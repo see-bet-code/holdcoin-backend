@@ -22,6 +22,10 @@ ActiveRecord::Schema.define(version: 2020_11_25_210614) do
     t.boolean "performing"
     t.integer "hold_goal"
     t.integer "stop_limit"
+    t.string "slug"
+    t.string "name"
+    t.bigint "max_supply"
+    t.string "currency_symbol"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
