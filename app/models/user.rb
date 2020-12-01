@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  has_many :cryptos, dependent: :destroy
-  # has_many :transactions, through: :cryptos, dependent: :destroy
+  #something weird on dependent destroy
+  has_many :transactions, dependent: :destroy
+  has_many :cryptos, through: :transactions
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   has_secure_password

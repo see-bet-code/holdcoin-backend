@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get "/user_auth", to: "sessions#user_auth"
       delete '/logout', to: 'sessions#destroy'
       get '/profile', to: 'users#profile'
-      # resources :cryptos
+      resources :cryptos
       resources :transactions
     end
   end

@@ -25,20 +25,20 @@ ActiveRecord::Schema.define(version: 2020_11_25_210614) do
     t.string "slug"
     t.string "name"
     t.bigint "max_supply"
-    t.string "currency_symbol"
-    t.bigint "user_id", null: false
+    t.string "symbol"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_cryptos_on_user_id"
   end
 
   create_table "transactions", force: :cascade do |t|
     t.integer "size"
     t.string "side"
     t.bigint "crypto_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["crypto_id"], name: "index_transactions_on_crypto_id"
+    t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -51,6 +51,6 @@ ActiveRecord::Schema.define(version: 2020_11_25_210614) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "cryptos", "users"
   add_foreign_key "transactions", "cryptos"
+  add_foreign_key "transactions", "users"
 end

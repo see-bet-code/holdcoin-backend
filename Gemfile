@@ -46,4 +46,4 @@ gem 'activerecord-reset-pk-sequence'
 
 gem 'rest-client'
 
-gem 'httparty'
+gem 'figaro'
