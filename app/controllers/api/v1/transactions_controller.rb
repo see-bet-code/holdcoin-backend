@@ -26,9 +26,9 @@ class Api::V1::TransactionsController < ApplicationController
   def transaction_params
       params.permit(
           :size,
-          :side,
-          :crypto_id,
-          :user_id
+          :side
+          # :crypto_id,
+          # :user_id
       )
   end
 end
