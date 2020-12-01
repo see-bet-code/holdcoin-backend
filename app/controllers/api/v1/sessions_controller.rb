@@ -17,8 +17,8 @@ class Api::V1::SessionsController < ApplicationController
   # end
 
   def auto_login
-    if current_user
-      render json: UserSerializer.new(current_user)
+    if @user
+      render json: UserSerializer.new(@user)
     else
       render json: {errors: "No user logged in"}
     end
