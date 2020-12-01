@@ -5,7 +5,7 @@ class Api::V1::SessionsController < ApplicationController
     @user = User.find_by(username: user_login_params[:username])
     if @user && @user.authenticate(user_login_params[:password])
       token = encode_token(user_id: @user.id)
-      render json: { user: UserSerializer.new(@user), jwt: token, message: "Welcome back, #{@user.name}"}, status: :accepted
+      render json: { user: @user, jwt: token, message: "Welcome back, #{@user.name}"}, status: :accepted
     else
       render json: { message: 'Invalid username and/or password' }, status: :unauthorized
     end
@@ -17,8 +17,8 @@ class Api::V1::SessionsController < ApplicationController
   # end
 
   def auto_login
-    if @user
-      render json: UserSerializer.new(@user)
+    if current_user
+      render json: current_user
     else
       render json: {errors: "No user logged in"}
     end

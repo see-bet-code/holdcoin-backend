@@ -1,7 +1,7 @@
 class Api::V1::TransactionsController < ApplicationController
   def show
     transaction = Transaction.find(params[:id])
-    render json: TransactionSerializer.new(transaction)
+    render json: transaction
   end
 
   def index
@@ -16,7 +16,7 @@ class Api::V1::TransactionsController < ApplicationController
       else
           render json: {
               status: :added,
-              transaction: TransactionSerializer.new(transaction)
+              transaction: transaction
           }
       end
   end
@@ -26,9 +26,9 @@ class Api::V1::TransactionsController < ApplicationController
   def transaction_params
       params.permit(
           :size,
-          :side
-          # :crypto_id,
-          # :user_id
+          :side,
+          :crypto_id,
+          :user_id
       )
   end
 end

@@ -16,7 +16,7 @@ class Api::V1::CryptosController < ApplicationController
 
   def show
     crypto = Crypto.find(params[:id])
-    render json: CryptoSerializer.new(crypto)
+    render json: crypto
   end
 
   def index
@@ -31,7 +31,7 @@ class Api::V1::CryptosController < ApplicationController
       else
           render json: {
               status: :added,
-              crypto: CryptoSerializer.new(crypto)
+              crypto: crypto
           }
       end
   end

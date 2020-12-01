@@ -37,6 +37,6 @@ class ApplicationController < ActionController::API
   end
 
   def secret_key
-    Rails.application.credentials.secret_key
+    ENV['secret_key']
   end
 end
