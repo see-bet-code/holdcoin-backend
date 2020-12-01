@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resources :users, only: [:create]
       post '/login', to: 'sessions#create'
       get '/auto_login', to: 'sessions#auto_login'
-      get "/user_auth", to: "sessions#user_auth"
+      get '/user_auth', to: "sessions#user_auth"
       delete '/logout', to: 'sessions#destroy'
       get '/profile', to: 'users#profile'
       resources :cryptos
