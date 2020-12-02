@@ -17,6 +17,7 @@ class Api::V1::TransactionsController < ApplicationController
         render json: { transaction: TransactionSerializer.new(transaction), crypto: CryptoSerializer.new(crypto) }, status: :created
       else
         transaction.destroy
+        crypto.destroy
         render json: { errors: transaction.errors.full_messages}, status: :not_acceptable
       end
     else
@@ -48,6 +49,7 @@ class Api::V1::TransactionsController < ApplicationController
     params.permit(
       :hold_price,
       :stop_limit)
+
   end
   
 

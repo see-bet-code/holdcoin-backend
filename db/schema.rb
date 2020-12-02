@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2020_11_25_210614) do
   enable_extension "plpgsql"
 
   create_table "cryptos", force: :cascade do |t|
-    t.integer "price"
+    t.float "price"
     t.string "group"
     t.integer "hold_price"
     t.integer "stop_limit"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2020_11_25_210614) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.integer "size"
+    t.float "size"
     t.string "side"
     t.bigint "crypto_id", null: false
     t.bigint "user_id", null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2020_11_25_210614) do
     t.integer "age"
     t.string "username"
     t.string "password_digest"
-    t.integer "balance"
+    t.float "balance"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

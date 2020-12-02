@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.integer :age
       t.string :username
       t.string :password_digest
-      t.integer :balance
+      t.float :balance
 
       t.timestamps
     end
