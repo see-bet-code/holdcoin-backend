@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   before_create :load_balance
 
+
   private
   
   def load_balance

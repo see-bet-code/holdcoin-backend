@@ -5,6 +5,8 @@ class Transaction < ApplicationRecord
 
   before_create :check_balance
 
+  validates_inclusion_of :side, :in => %w( buy sell )
+
   def total_price
     self.crypto.price * self.size
   end
@@ -12,6 +14,11 @@ class Transaction < ApplicationRecord
   private
   
   def check_balance
-    errors.add(:size, 'Total price cannot exceed user\'s balance') if self.total_price > self.crypto.user.balance
+    new_balance = self.user.balance - self.total_price
+    if new_balance < 0
+      errors.add(:size, 'Total price cannot exceed user\'s balance') if self.total_price > self.user.balance
+    else
+      self.user.update(balance: new_balance)
+    end
   end
 end

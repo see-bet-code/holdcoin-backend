@@ -3,11 +3,8 @@ class CreateCryptos < ActiveRecord::Migration[6.0]
     create_table :cryptos do |t|
       t.integer :price
       t.string :group
-      t.integer :bought_price
-      t.boolean :performing
-      t.integer :hold_goal
+      t.integer :hold_price
       t.integer :stop_limit
-      t.string :slug 
       t.string :name
       t.bigint :max_supply
       t.string :symbol

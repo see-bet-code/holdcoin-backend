@@ -2,7 +2,6 @@ class Api::V1::CryptosController < ApplicationController
   # API_URL = "https://api.pro.coinbase.com"
 
   # def index
-    # search_term = params['q'].capitalize
     # response = RestClient.get "https://api.collection.cooperhewitt.org/rest/?method=cooperhewitt.search.collection&access_token=YOURTOKENHERE=#{search_term}&page=1&per_page=100"
     # json = JSON.parse response
     # if !json['total'].zero?
@@ -24,18 +23,6 @@ class Api::V1::CryptosController < ApplicationController
       render json: cryptos
   end
 
-  def create
-      crypto = Crypto.new(crypto_params)
-      unless crypto.save
-          render json: { status: 500 }
-      else
-          render json: {
-              status: :added,
-              crypto: crypto
-          }
-      end
-  end
-
   private
 
   def crypto_params
@@ -43,7 +30,7 @@ class Api::V1::CryptosController < ApplicationController
         :name,
         :price,
         :symbol,
-        :hold_goal,
+        :hold_price,
         :stop_limit,
         :max_supply,
         :group

@@ -18,11 +18,8 @@ ActiveRecord::Schema.define(version: 2020_11_25_210614) do
   create_table "cryptos", force: :cascade do |t|
     t.integer "price"
     t.string "group"
-    t.integer "bought_price"
-    t.boolean "performing"
-    t.integer "hold_goal"
+    t.integer "hold_price"
     t.integer "stop_limit"
-    t.string "slug"
     t.string "name"
     t.bigint "max_supply"
     t.string "symbol"
