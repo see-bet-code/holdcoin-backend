@@ -15,6 +15,9 @@ class Transaction < ApplicationRecord
   
   def check_balance
     new_balance = self.user.balance - self.total_price
+    p self.user.balance
+    p total_price
+    p new_balance
     if new_balance < 0
       errors.add(:size, 'Total price cannot exceed user\'s balance') if self.total_price > self.user.balance
     else
