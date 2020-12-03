@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       # get '/snails/:id', to: 'snails#show', as: 'snail', param: :name
-      resources :users, only: [:create]
+      resources :users, only: [:create, :update, :destroy]
       post '/login', to: 'sessions#create'
       get '/auto_login', to: 'sessions#auto_login'
       get '/user_auth', to: "sessions#user_auth"

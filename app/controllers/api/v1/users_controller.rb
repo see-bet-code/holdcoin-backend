@@ -15,6 +15,18 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def update
+    if @user.update(user_params)
+      render json: { user: UserSerializer.new(@user) }, status: :updated
+    else
+      render json: { errors: @user.errors.full_messages }, status: :not_acceptable
+    end 
+end
+
+def destroy
+    @user ? @user.destroy : render json: { errors: ["User is null"] }, status: :not_acceptable
+end
+
   private
   def user_params
     params.require(:user).permit(
