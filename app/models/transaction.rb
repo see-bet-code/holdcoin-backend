@@ -3,17 +3,20 @@ class Transaction < ApplicationRecord
   belongs_to :crypto
   belongs_to :user
 
-  before_create :check_balance
+  before_create :set_snapshot_price, :check_balance
 
   validates_inclusion_of :side, :in => %w( buy sell )
 
-  def total_price
-    self.crypto.price.to_f * self.size.to_f
-  end
 
   private
-  
+
+  def set_snapshot_price
+    self.snapshot_price = self.crypto.price.to_f
+  end
+
+
   def check_balance
+    self.total_price = self.crypto.price.to_f * self.size.to_f
     new_balance = self.user.balance - self.total_price
     if new_balance < 0
       errors.add(:size, 'Total price cannot exceed user\'s balance') if self.total_price > self.user.balance

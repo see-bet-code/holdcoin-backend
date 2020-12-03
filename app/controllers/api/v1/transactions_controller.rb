@@ -12,7 +12,7 @@ class Api::V1::TransactionsController < ApplicationController
   def create
     crypto = Crypto.create(crypto_params.merge(hold_params))
     if crypto.valid?
-      transaction = Transaction.create(transaction_params.merge({crypto_id: crypto.id}))
+      transaction = Transaction.create(transaction_params.merge({crypto_id: crypto.id}).merge(params.require(:crypto).permit(:symbol)))
       unless transaction.errors.any?
         render json: { transaction: TransactionSerializer.new(transaction), crypto: CryptoSerializer.new(crypto) }, status: :created
       else

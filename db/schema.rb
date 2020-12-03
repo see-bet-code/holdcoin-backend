@@ -30,6 +30,9 @@ ActiveRecord::Schema.define(version: 2020_11_25_210614) do
   create_table "transactions", force: :cascade do |t|
     t.float "size"
     t.string "side"
+    t.string "symbol"
+    t.float "snapshot_price"
+    t.float "total_price"
     t.bigint "crypto_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false

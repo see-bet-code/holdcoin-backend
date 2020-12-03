@@ -24,7 +24,7 @@ class Api::V1::UsersController < ApplicationController
 end
 
 def destroy
-    @user ? @user.destroy : render json: { errors: ["User is null"] }, status: :not_acceptable
+    # @user ? @user.destroy : render json: { errors: ["User is null"] }, status: :not_acceptable
 end
 
   private
