@@ -8,6 +8,18 @@ class User < ApplicationRecord
 
   before_create :load_balance
 
+  def total_spend(crypto)
+    user.transactions.where(crypto: crypto).inject(0) { |sum, t| sum + t.total_price }
+  end
+
+  def total_size(crypto)
+    user.transactions.where(crypto: crypto).inject(0) { |sum, t| sum + t.size }
+  end
+
+  def average_price(symbol)
+    matched_cryptos = user.cryptos.where(symbol: symbol)
+    matched_cryptos.inject(0) { |sum, c| sum + c.price }.to_f / matched_cryptos.size
+  end
 
   private
   
