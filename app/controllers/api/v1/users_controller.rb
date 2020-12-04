@@ -21,7 +21,7 @@ class Api::V1::UsersController < ApplicationController
     else
       render json: { errors: @user.errors.full_messages }, status: :not_acceptable
     end 
-end
+  end
 
 def destroy
   if @user
@@ -37,7 +37,8 @@ end
       :username,
       :password,
       :name, 
-      :age
+      :age,
+      :balance
       ) 
     # :avatar
   end
