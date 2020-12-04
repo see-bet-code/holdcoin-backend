@@ -16,7 +16,8 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
+    newB = balance_param[:balance].to_f + @user.balance if balance_param
+    if @user.update(user_params.merge({balance: newB}))
       render json: { user: UserSerializer.new(@user) }, status: :updated
     else
       render json: { errors: @user.errors.full_messages }, status: :not_acceptable
@@ -37,10 +38,13 @@ end
       :username,
       :password,
       :name, 
-      :age,
-      :balance
+      :age
       ) 
     # :avatar
+  end
+
+  def balance_param
+    params.require(:user).permit(:balance)
   end
 
 end
