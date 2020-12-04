@@ -47,3 +47,6 @@ gem 'activerecord-reset-pk-sequence'
 gem 'rest-client'
 
 gem 'figaro'
+
+gem 'stripe'
+gem 'sinatra'

@@ -1,3 +1,6 @@
+require 'json'
+require 'sinatra'
+
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api do
@@ -11,6 +14,9 @@ Rails.application.routes.draw do
       get '/profile', to: 'users#profile'
       resources :cryptos
       resources :transactions
+
+      post '/create_checkout_session', to: 'wallets#create_checkout_session'
+    
     end
   end
 
