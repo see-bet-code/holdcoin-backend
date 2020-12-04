@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :cryptos, through: :transactions
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
+  validates :age, numericality: { greater_than_or_equal_to: 18 }
   has_secure_password
 
   before_create :load_balance
